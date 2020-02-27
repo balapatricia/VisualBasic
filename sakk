@@ -1,0 +1,18 @@
+Sub sakk()
+
+Dim i, j As Integer
+Range("K20").Select
+
+For i = 0 To 7
+    Rows(20 + i).RowHeight = 25
+    For j = 0 To 7
+        Columns(11 + j).ColumnWidth = 5
+        If i Mod 2 <> 0 And j Mod 2 <> 0 Then
+            ActiveCell.Offset(i, j).Interior.Color = RGB(0, 0, 0)
+        ElseIf i Mod 2 = 0 And j Mod 2 = 0 Then
+            ActiveCell.Offset(i, j).Interior.Color = RGB(0, 0, 0)
+        End If
+    Next j
+Next i
+
+End Sub
