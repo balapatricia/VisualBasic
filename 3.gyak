@@ -1,0 +1,145 @@
+Const PI As Double = 3.1415
+
+Sub kor(r As Double, K As Double)   '(ByRef R As Double...
+
+    K = 2 * PI * r
+    r = 1000
+
+End Sub
+
+
+
+Sub kor2(ByVal r As Double, ByVal K As Double)
+
+    K = 2 * PI * r
+    r = 1000
+
+End Sub
+
+
+
+Sub main()
+
+Dim sugar As Double, Ker As Double
+
+sugar = 10
+
+Call kor2(sugar, Ker)
+
+Debug.Print "A sugár= " & sugar & " és a kerület= " & Ker
+
+
+End Sub
+____________________________________________________________________________
+
+Function lnko(a As Integer, b As Integer) As Integer
+
+Dim r As Integer
+
+Do
+
+    r = a Mod b
+    a = b
+    b = r
+
+Loop While r <> 0
+
+lnko = a
+
+End Function
+
+
+Sub main()
+
+Debug.Print "Az lnko= " & lnko(225, 360)
+
+End Sub
+____________________________________________________________________________
+
+Function palindrom(szam As Long) As Boolean
+
+Dim masolat As Long, fszam As Long, szj As Byte
+
+masolat = szam
+
+Do While szam <> 0
+
+    szj = szam Mod 10
+    szam = szam \ 10
+    
+    fszam = fszam * 10 + szj
+
+Loop
+
+palindrom = masolat = fszam
+
+End Function
+
+
+
+
+Sub main()
+
+Debug.Print palindrom(121)
+
+End Sub
+
+____________________________________________________________________________
+
+Function prim(a As Integer) As Boolean
+Dim i As Integer
+
+prim = True
+
+If a = 1 Then
+    prim = False
+End If
+
+For i = 2 To Sqr(a)
+    If a Mod i = 0 Then
+        prim = False
+    End If
+Next i
+
+End Function
+
+
+Sub main()
+
+Debug.Print prim(7)
+
+End Sub
+
+____________________________________________________________________________
+
+Sub fibo(ByVal n As Byte)
+
+Dim a As Integer, b As Integer, c As Integer, i As Byte
+
+a = 0
+b = 1
+
+If n = 1 Then
+    Range("A1").Cells(1) = a
+ElseIf n = 2 Then
+    Range("A1").Cells(1) = a
+    Range("A1").Cells(2) = b
+Else
+    Range("A1").Cells(1) = a
+    Range("A1").Cells(2) = b
+    For i = 3 To n
+        c = a + b
+        Range("A1").Cells(i) = c
+        a = b
+        b = c
+    Next i
+End If
+        
+End Sub
+
+
+Sub main()
+
+Call fibo(10)
+
+End Sub
