@@ -1,0 +1,59 @@
+Function buvosnegyzet(ByVal n As Byte) As Boolean
+
+buvosnegyzet = True
+
+Dim i As Byte, j As Byte, sum As Integer, etalon As Integer
+
+
+'főátló
+For i = 0 To n - 1
+    etalon = etalon + Range("B2").Offset(i, i)
+Next i
+
+
+'mellékátló
+For i = 0 To n - 1
+    sum = sum + Range("B2").Offset(i, n - 1 - i)
+Next i
+
+If etalon <> sum Then
+    buvosnegyzet = False
+    Exit Function
+End If
+
+sum = 0
+
+
+'sorok
+For i = 0 To n - 1
+    For j = 0 To n - 1
+        sum = sum + Range("B2").Offset(i, j)
+    Next j
+    If etalon <> sum Then
+        buvosnegyzet = False
+        Exit Function
+    End If
+    sum = 0
+Next i
+
+
+'oszlopok
+For i = 0 To n - 1
+    For j = 0 To n - 1
+        sum = sum + Range("B2").Offset(j, i)
+    Next j
+    If etalon <> sum Then
+        buvosnegyzet = False
+        Exit Function
+    End If
+    sum = 0
+Next i
+
+End Function
+
+
+Sub Main()
+
+MsgBox buvosnegyzet(3)
+
+End Sub
