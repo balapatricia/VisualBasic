@@ -1,0 +1,37 @@
+Sub pozneg()
+
+    Dim c As Range
+    Dim poz As Integer, neg As Integer
+    Dim tmp As Boolean
+    
+    Set c = Range("C1")
+    
+    If c.Value > 0 Then
+        poz = poz + 1
+        tmp = True
+    ElseIf c.Value < 0 Then
+        neg = neg + 1
+        tmp = False
+    End If
+    Set c = c.Offset(1, 0)
+    
+    Do While True
+        If c.Value > 0 Then
+            If tmp = True Then
+                Exit Do
+            End If
+            poz = poz + 1
+            tmp = True
+        ElseIf c.Value < 0 Then
+            If tmp = False Then
+                Exit Do
+            End If
+            neg = neg + 1
+            tmp = False
+        End If
+        Set c = c.Offset(1, 0)
+    Loop
+    
+    Debug.Print "Negatív számok: " & neg & " db, pozitív számok: " & poz & " db"
+
+End Sub
